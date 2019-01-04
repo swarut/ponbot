@@ -1,5 +1,8 @@
 defmodule Ponbot.Repo do
   use Ecto.Repo,
     otp_app: :ponbot,
-    adapter: Ecto.Adapters.Postgres
+    adapter: Ecto.Adapters.Postgres,
+    url: System.get_env("DATABASE_URL"),
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+    ssl: false
 end
