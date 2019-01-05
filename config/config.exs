@@ -17,6 +17,8 @@ config :ponbot, PonbotWeb.Endpoint,
   render_errors: [view: PonbotWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Ponbot.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :ponbot, environment: Mix.env
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
