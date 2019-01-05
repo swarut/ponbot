@@ -1,7 +1,8 @@
 defmodule Ponbot.Tasks.ReleaseTasks do
   @start_apps [
     :postgrex,
-    :ecto
+    :ecto,
+    :ecto_sql
   ]
 
   @repo Ponbot.Repo
@@ -19,6 +20,11 @@ defmodule Ponbot.Tasks.ReleaseTasks do
     IO.puts "Booting pre hook..."
     # Load app without starting it
     # :ok = Application.load(@otp_app)
+    case Application.load(@otp_app) do
+      :ok -> IO.puts "Ponbot is now loaded."
+      {:error, {reason, :ponbot}} -> IO.puts "Load failed #{inspect reason}"
+    end
+
     # Ensure postgrex and ecto applications started
     Enum.each(@start_apps, &Application.ensure_all_started/1)
   end
@@ -32,12 +38,24 @@ defmodule Ponbot.Tasks.ReleaseTasks do
     {:ok, _ } = @repo.start_link(pool_size: 2)
   end
 
-  defp run_migrations() do
-    IO.puts "Running migrations..."
-    Ecto.Migrator.run(@repo, migrations_path(), :up, all: true)
+  defp run_migrations do
+    app = Keyword.get(@repo.config, :otp_app)
+    IO.puts("Running migrations for #{app}")
+    migrations_path = priv_path_for(@repo, "migrations")
+    Ecto.Migrator.run(@repo, migrations_path, :up, all: true)
   end
 
-  defp migrations_path(), do: Path.join([priv_dir(), "repo", "migrations"])
+  defp priv_path_for(repo, filename) do
+    app = Keyword.get(repo.config, :otp_app)
 
-  defp priv_dir(), do: "#{:code.priv_dir(@otp_app)}"
+    repo_underscore =
+      repo
+      |> Module.split()
+      |> List.last()
+      |> Macro.underscore()
+
+    priv_dir = "#{:code.priv_dir(app)}"
+
+    Path.join([priv_dir, repo_underscore, filename])
+  end
 end
