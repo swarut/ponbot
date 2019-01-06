@@ -30,7 +30,9 @@ defmodule Ponbot.Tasks.ReleaseTasks do
   end
 
   defp create_database() do
-    IO.puts "Creating the database if needed..."
+    IO.puts("-------- database url #{inspect System.get_env("PONBOT_DB_USERNAME")}")
+    IO.puts("-------- database url #{inspect System.get_env("DATABASE_URL")}")
+    IO.puts "Creating the database if needed.xxxx.. #{inspect @repo.config}"
     @repo.__adapter__.storage_up(@repo.config)
   end
 
