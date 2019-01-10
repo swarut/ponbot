@@ -68,8 +68,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :ponbot, Ponbot.Repo,
-  username: "swarut",
-  password: "",
-  database: "ponbot_dev",
+  username: System.get_env("DEV_DB_USERNAME"),
+  password: System.get_env("DEV_DB_PASSWORD"),
+  database: System.get_env("DEV_DB"),
   hostname: "localhost",
   pool_size: 10
