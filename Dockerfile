@@ -18,8 +18,8 @@ ARG SKIP_PHOENIX=false
 
 ARG PONBOT_DB_USERNAME=swarut
 ARG PONBOT_DB_PASSWORD=
-ARG PONBOT_DB=ponbot_prod
-ARG DATABASE_URL=postgresql://swarut:host.docker.internal/ponbot_prod
+ARG PONBOT_DB=ponbot_prod3
+ARG DATABASE_URL=postgresql://swarut:host.docker.internal/ponbot_prod4
 
 ARG PHOENIX_SUBDIR=.
 
