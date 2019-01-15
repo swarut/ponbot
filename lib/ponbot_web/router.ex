@@ -17,6 +17,8 @@ defmodule PonbotWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/users", UserController
+    resources "/addresses", AddressController
   end
 
   # Other scopes may use custom stacks.

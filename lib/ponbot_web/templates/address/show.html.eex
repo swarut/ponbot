@@ -1,0 +1,33 @@
+<h1>Show Address</h1>
+
+<ul>
+
+  <li>
+    <strong>Street address:</strong>
+    <%= @address.street_address %>
+  </li>
+
+  <li>
+    <strong>Postcode:</strong>
+    <%= @address.postcode %>
+  </li>
+
+  <li>
+    <strong>City:</strong>
+    <%= @address.city %>
+  </li>
+
+  <li>
+    <strong>Country:</strong>
+    <%= @address.country %>
+  </li>
+
+  <li>
+    <strong>State:</strong>
+    <%= @address.state %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.address_path(@conn, :edit, @address) %></span>
+<span><%= link "Back", to: Routes.address_path(@conn, :index) %></span>
