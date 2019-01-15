@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :ponbot, Ponbot.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "ponbot_test",
+  username: System.get_env("TEST_DB_USERNAME"),
+  password: System.get_env("TEST_DB_PASSWORD"),
+  database: System.get_env("TEST_DB"),
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
