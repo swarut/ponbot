@@ -3,7 +3,7 @@ defmodule Ponbot.Accounts.User do
   import Ecto.Changeset
 
 
-  schema "user" do
+  schema "users" do
     field :last_login, :time
     field :line_id, :string
     field :username, :string
