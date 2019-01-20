@@ -17,6 +17,7 @@ defmodule PonbotWeb.Router do
     pipe_through :browser
 
     post "/webhook", PonbotWeb.Line.WebhookController, :status
+    get "/webhook", PonbotWeb.Line.WebhookController, :status
   end
 
   scope "/", PonbotWeb do

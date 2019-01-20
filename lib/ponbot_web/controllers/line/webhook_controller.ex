@@ -3,7 +3,6 @@ defmodule PonbotWeb.Line.WebhookController do
   require IEx
 
   def status(conn, _params) do
-    IEx.pry
     conn
     |> put_status(200)
     |> render("index.html")
