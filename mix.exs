@@ -41,9 +41,10 @@ defmodule Ponbot.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 2.0"},
+      {:httpoison, "~> 1.4"},
+      {:jason, "~> 1.1"}
     ]
   end
 
