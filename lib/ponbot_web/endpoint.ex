@@ -25,7 +25,7 @@ defmodule PonbotWeb.Endpoint do
 
   plug Plug.RequestId
   plug Plug.Logger
-
+  # plug PonbotWeb.LineWebhookPlug, mount: ["line", "webhook"], line_secret: "b037fbb16634379b18158655a60ac75f"
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],

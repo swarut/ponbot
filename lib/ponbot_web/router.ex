@@ -9,12 +9,20 @@ defmodule PonbotWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :line_webhook do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    # plug PonbotWeb.LineWebhookPlug, mount: ["line", "webhook"], line_secret: "b037fbb16634379b18158655a60ac75f"
+    plug :put_secure_browser_headers
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/line" do
-    pipe_through :browser
+    pipe_through :line_webhook
 
     post "/webhook", PonbotWeb.Line.WebhookController, :status
     get "/webhook", PonbotWeb.Line.WebhookController, :status
