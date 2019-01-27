@@ -44,7 +44,8 @@ defmodule Ponbot.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:distillery, "~> 2.0"},
       {:httpoison, "~> 1.4"},
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:ex_line_wrapper, "~> 0.1"}
     ]
   end
 
