@@ -5,6 +5,9 @@ defmodule PonbotWeb.Line.WebhookController do
   @message_endpoint "https://api.line.me/v2/bot/message/reply"
   @oauth_endpoint "https://api.line.me/v2/oauth/accessToken"
 
+  @channel_id "1633821373"
+  @channel_secret "b037fbb16634379b18158655a60ac75f"
+
   # https://api.line.me/v2/oauth/accessToken
 
   def status(conn, _params) do
@@ -29,7 +32,7 @@ defmodule PonbotWeb.Line.WebhookController do
   defp reply(message, reply_token, access_token) do
     header = [
       {"Content-Type", "application/json"},
-      {"Authorization", "Bearer #{access_token}"}
+      {"Authorization", "Bearer dsfdsf#{access_token}"}
     ]
     {:ok, body} = Jason.encode(%{
       replyToken: reply_token,
@@ -38,9 +41,24 @@ defmodule PonbotWeb.Line.WebhookController do
         text: message
       }]
     })
-    IEx.pry
     case HTTPoison.post @message_endpoint, body, header do
       {:ok, resp = %HTTPoison.Response{status_code: 401}} -> IO.puts("STATUS 401: Unauthorized --- #{inspect resp}")
+      {:ok, resp = %HTTPoison.Response{status_code: 200}} -> IO.puts("SENNNTTTT #{inspect resp}")
+      {:error, err} -> IO.puts("ERRRORRRR #{inspect err}")
+    end
+  end
+
+  defp authenticate() do
+    header = [
+      {"Content-Type", "application/x-www-form-urlencoded"}
+    ]
+    {:ok, body} = Jason.encode(%{
+      grant_type: "client_credentials",
+      client_id: @channel_id,
+      client_secret: @channel_secret
+    })
+    case HTTPoison.post @oauth_endpoint, body, header do
+      {:ok, resp = %HTTPoison.Response{status_code: 400}} -> IO.puts("STATUS 400: Unauthorized --- #{inspect resp}")
       {:ok, resp = %HTTPoison.Response{status_code: 200}} -> IO.puts("SENNNTTTT #{inspect resp}")
       {:error, err} -> IO.puts("ERRRORRRR #{inspect err}")
     end
