@@ -64,9 +64,14 @@ defmodule PonbotWeb.Line.WebhookController do
     })
     IO.puts("body = #{inspect body}")
     case HTTPoison.post @oauth_endpoint, body, header do
-      {:ok, resp = %HTTPoison.Response{status_code: 400}} -> IO.puts("STATUS 400: Unauthorized --- #{inspect resp}")
-      {:ok, resp = %HTTPoison.Response{status_code: 200}} -> IO.puts("SENNNTTTT #{inspect resp}")
-      {:error, err} -> IO.puts("ERRRORRRR #{inspect err}")
+      {:ok, resp = %HTTPoison.Response{status_code: 400}} ->
+        IO.puts("STATUS 400: Unauthorized --- #{inspect resp}")
+      {:ok, resp = %HTTPoison.Response{status_code: 200, body: body}} ->
+        IO.puts("SENNNTTTT #{inspect resp}")
+        {:ok, json} = Jason.decode(body)
+        {:ok, json}
+      {:error, err} ->
+        IO.puts("ERRRORRRR #{inspect err}")
     end
   end
 end
