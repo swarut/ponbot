@@ -52,7 +52,12 @@ defmodule PonbotWeb.Line.WebhookController do
     header = [
       {"Content-Type", "application/x-www-form-urlencoded"}
     ]
-    {:ok, body} = Jason.encode(%{
+    # {:ok, body} = Jason.encode(%{
+    #   grant_type: "client_credentials",
+    #   client_id: @channel_id,
+    #   client_secret: @channel_secret
+    # })
+    body = URI.encode_query(%{
       grant_type: "client_credentials",
       client_id: @channel_id,
       client_secret: @channel_secret
