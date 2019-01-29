@@ -48,7 +48,7 @@ defmodule PonbotWeb.Line.WebhookController do
     end
   end
 
-  defp authenticate() do
+  def authenticate() do
     header = [
       {"Content-Type", "application/x-www-form-urlencoded"}
     ]
@@ -57,6 +57,7 @@ defmodule PonbotWeb.Line.WebhookController do
       client_id: @channel_id,
       client_secret: @channel_secret
     })
+    IO.puts("body = #{inspect body}")
     case HTTPoison.post @oauth_endpoint, body, header do
       {:ok, resp = %HTTPoison.Response{status_code: 400}} -> IO.puts("STATUS 400: Unauthorized --- #{inspect resp}")
       {:ok, resp = %HTTPoison.Response{status_code: 200}} -> IO.puts("SENNNTTTT #{inspect resp}")
