@@ -11,10 +11,17 @@ defmodule PonbotWeb.Line.WebhookController do
     events = conn.params["events"]
     [first_event| _] = events
     reply_token = first_event["replyToken"]
-    access_token = "b+rw+B8C44Nbb+pb7Naf1Gvt7b42OydZDfOHlO0IBp+GP4JOZX8HtiKN6mrfjvNcNtxfnL9uzgWssp/f05zHHzJKUyZcAqYw1O9bDiHwRKgLpQJMEGqqdPjec9q682dcAeawxEmY7AZ/kW9rXXE7LwdB04t89/1O/w1cDnyilFU="
+    access_token = "sss"
     case first_event["type"] do
       "message" ->
-        ExLineWrapper.reply("hi yo", reply_token, access_token)
+        case ExLineWrapper.reply("hi yo", reply_token, access_token) do
+          {:ok} ->
+            IO.puts "Reply message is successful sent."
+          {:error} ->
+            IO.puts "Access token is invalid"
+            {:ok, resp} = ExLineWrapper.authenticate(@channel_id, @channel_secret)
+            ExLineWrapper.reply("hi yo", reply_token, resp["access_token"])
+        end
         conn
         |> put_status(200)
         |> render("index.html")
@@ -27,6 +34,7 @@ defmodule PonbotWeb.Line.WebhookController do
   end
 
   def authenticate() do
-    ExLineWrapper.authenticate(@channel_id, @channel_secret)
+
   end
+
 end
