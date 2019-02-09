@@ -2,6 +2,8 @@ defmodule PonbotWeb.Line.WebhookController do
   use PonbotWeb, :controller
   require IEx
 
+  alias Ponbot.Configurations
+
   @channel_id "1633821373"
   @channel_secret "b037fbb16634379b18158655a60ac75f"
 
@@ -11,7 +13,15 @@ defmodule PonbotWeb.Line.WebhookController do
     events = conn.params["events"]
     [first_event| _] = events
     reply_token = first_event["replyToken"]
-    access_token = "sss"
+
+    access_token = case Configurations.get_setting_by_key("line_access_token") do
+      %Configurations.Setting{key: "line_access_token", value: value} -> value
+      nil ->
+        {:ok, resp} = ExLineWrapper.authenticate(@channel_id, @channel_secret)
+        {:ok, setting} = Configurations.create_setting(%{key: "line_access_token", value: resp["access_token"]})
+        setting.value
+    end
+
     case first_event["type"] do
       "message" ->
         case ExLineWrapper.reply("hi yo", reply_token, access_token) do

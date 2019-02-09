@@ -37,6 +37,36 @@ defmodule Ponbot.Configurations do
   """
   def get_setting!(id), do: Repo.get!(Setting, id)
 
+  def get_setting(id), do: Repo.get(Setting, id)
+
+  @doc """
+  Get a single setting by key.
+
+  Raises `Ecto.NoResultsError` if the Setting does not exist.
+  ## Examples
+      iex> get_setting_by_key!("key")
+      %Setting{}
+  """
+  def get_setting_by_key!(key), do: Repo.get_by!(Setting, key: key)
+  def get_setting_by_key(key), do: Repo.get_by(Setting, key: key)
+
+  @doc """
+  Get a single setting by key or create if not exist.
+
+  ## Examples
+      iex> get_by_key_or_create(key, attrs)
+      %Setting
+  """
+  def get_by_key_or_create(key, attrs) do
+    case get_setting_by_key(key) do
+      setting = %Setting{} -> setting
+      _ ->
+        {:ok, setting} = create_setting(attrs)
+        setting
+    end
+  end
+
+
   @doc """
   Creates a setting.
 
