@@ -34,6 +34,7 @@ defmodule PonbotWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/addresses", AddressController
+    resources "/settings", SettingController
   end
 
   # Other scopes may use custom stacks.
