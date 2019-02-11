@@ -4,32 +4,21 @@
 </section>
 
 <section class="row">
-  <article class="column">
-    <h2>Resources</h2>
+  <div>
+    <h2>Settings</h2>
     <ul>
       <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
+        <%= link "Settings", to: Routes.setting_path(@conn, :index) %>
       </li>
     </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
+  </div>
+  <div>
+    <h2>Finances</h2>
     <ul>
       <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
+        <%= link "Expense", to: Routes.expense_path(@conn, :index) %>
+        <%= link "Expense Tag", to: Routes.expense_tag_path(@conn, :index) %>
       </li>
     </ul>
-  </article>
+  </div>
 </section>
