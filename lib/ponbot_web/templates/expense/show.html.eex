@@ -1,0 +1,18 @@
+<h1>Show Expense</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @expense.title %>
+  </li>
+
+  <li>
+    <strong>Cost:</strong>
+    <%= @expense.cost %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.expense_path(@conn, :edit, @expense) %></span>
+<span><%= link "Back", to: Routes.expense_path(@conn, :index) %></span>

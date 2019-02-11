@@ -1,0 +1,28 @@
+<h1>Listing Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Cost</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for expense <- @expenses do %>
+    <tr>
+      <td><%= expense.title %></td>
+      <td><%= expense.cost %></td>
+
+      <td>
+        <%= link "Show", to: Routes.expense_path(@conn, :show, expense) %>
+        <%= link "Edit", to: Routes.expense_path(@conn, :edit, expense) %>
+        <%= link "Delete", to: Routes.expense_path(@conn, :delete, expense), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Expense", to: Routes.expense_path(@conn, :new) %></span>
