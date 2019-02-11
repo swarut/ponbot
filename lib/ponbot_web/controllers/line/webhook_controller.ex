@@ -10,22 +10,21 @@ defmodule PonbotWeb.Line.WebhookController do
   # https://api.line.me/v2/oauth/accessToken
 
   def index(conn, _params) do
-    events = conn.params["events"]
-    [first_event| _] = events
+    Enum.each(conn.params["events"], fn(event) ->
+      Task.async(fn() -> handle_webhook(event, event["type"]) end)
+    end)
 
-    handle_webhook(first_event, first_event["type"])
-
-    conn
-    |> put_status(200)
-    |> render("index.html")
+    conn |> put_status(200) |> render("index.html")
   end
 
   def handle_webhook(event, event_type) when event_type == "message" do
     reply_token = event["replyToken"]
     access_token = get_access_token()
+    IO.puts inspect(event)
     case ExLineWrapper.reply("hi yo", reply_token, access_token) do
       {:ok} -> IO.puts "Reply message is successful sent."
     end
+
   end
 
   def handle_webhook(event, event_type) when event_type == "follow" do
