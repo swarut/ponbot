@@ -1,0 +1,26 @@
+<h1>Listing Expense tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for expense_tag <- @expense_tags do %>
+    <tr>
+      <td><%= expense_tag.name %></td>
+
+      <td>
+        <%= link "Show", to: Routes.expense_tag_path(@conn, :show, expense_tag) %>
+        <%= link "Edit", to: Routes.expense_tag_path(@conn, :edit, expense_tag) %>
+        <%= link "Delete", to: Routes.expense_tag_path(@conn, :delete, expense_tag), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Expense tag", to: Routes.expense_tag_path(@conn, :new) %></span>

@@ -1,0 +1,13 @@
+<h1>Show Expense tag</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @expense_tag.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.expense_tag_path(@conn, :edit, @expense_tag) %></span>
+<span><%= link "Back", to: Routes.expense_tag_path(@conn, :index) %></span>

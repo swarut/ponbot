@@ -101,4 +101,100 @@ defmodule Ponbot.Finances do
   def change_expense(%Expense{} = expense) do
     Expense.changeset(expense, %{})
   end
+
+  alias Ponbot.Finances.ExpenseTag
+
+  @doc """
+  Returns the list of expense_tags.
+
+  ## Examples
+
+      iex> list_expense_tags()
+      [%ExpenseTag{}, ...]
+
+  """
+  def list_expense_tags do
+    Repo.all(ExpenseTag)
+  end
+
+  @doc """
+  Gets a single expense_tag.
+
+  Raises `Ecto.NoResultsError` if the Expense tag does not exist.
+
+  ## Examples
+
+      iex> get_expense_tag!(123)
+      %ExpenseTag{}
+
+      iex> get_expense_tag!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_expense_tag!(id), do: Repo.get!(ExpenseTag, id)
+
+  @doc """
+  Creates a expense_tag.
+
+  ## Examples
+
+      iex> create_expense_tag(%{field: value})
+      {:ok, %ExpenseTag{}}
+
+      iex> create_expense_tag(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_expense_tag(attrs \\ %{}) do
+    %ExpenseTag{}
+    |> ExpenseTag.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a expense_tag.
+
+  ## Examples
+
+      iex> update_expense_tag(expense_tag, %{field: new_value})
+      {:ok, %ExpenseTag{}}
+
+      iex> update_expense_tag(expense_tag, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_expense_tag(%ExpenseTag{} = expense_tag, attrs) do
+    expense_tag
+    |> ExpenseTag.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a ExpenseTag.
+
+  ## Examples
+
+      iex> delete_expense_tag(expense_tag)
+      {:ok, %ExpenseTag{}}
+
+      iex> delete_expense_tag(expense_tag)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_expense_tag(%ExpenseTag{} = expense_tag) do
+    Repo.delete(expense_tag)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking expense_tag changes.
+
+  ## Examples
+
+      iex> change_expense_tag(expense_tag)
+      %Ecto.Changeset{source: %ExpenseTag{}}
+
+  """
+  def change_expense_tag(%ExpenseTag{} = expense_tag) do
+    ExpenseTag.changeset(expense_tag, %{})
+  end
 end

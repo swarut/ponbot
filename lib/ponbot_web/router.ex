@@ -34,6 +34,8 @@ defmodule PonbotWeb.Router do
     resources "/users", UserController
     resources "/addresses", AddressController
     resources "/settings", SettingController
+    resources "/expenses", ExpenseController
+    resources "/expense_tags", ExpenseTagController
   end
 
   # Other scopes may use custom stacks.
