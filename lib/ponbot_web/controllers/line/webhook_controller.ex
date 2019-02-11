@@ -20,11 +20,12 @@ defmodule PonbotWeb.Line.WebhookController do
   def handle_webhook(event, event_type) when event_type == "message" do
     reply_token = event["replyToken"]
     access_token = get_access_token()
-    IO.puts inspect(event)
-    case ExLineWrapper.reply("hi yo", reply_token, access_token) do
-      {:ok} -> IO.puts "Reply message is successful sent."
+    case event["message"]["type"] do
+      "text" ->
+        ExLineWrapper.reply("hi yo", reply_token, access_token)
+      "sticker" ->
+        IO.puts "------------ignore sticker---------------------"
     end
-
   end
 
   def handle_webhook(event, event_type) when event_type == "follow" do
