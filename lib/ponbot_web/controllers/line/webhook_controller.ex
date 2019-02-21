@@ -22,7 +22,13 @@ defmodule PonbotWeb.Line.WebhookController do
     access_token = get_access_token()
     case event["message"]["type"] do
       "text" ->
-        ExLineWrapper.reply("hi yo", reply_token, access_token)
+        text = event["message"]["text"]
+        cond do
+          String.starts_with?(text, "expense:") -> reply(event, "Received: #{text}")
+          String.starts_with?(text, "weather:") -> reply(event, "Fine weather day")
+          true -> reply(event, "yoyo")
+        end
+
       "sticker" ->
         IO.puts "------------ignore sticker---------------------"
     end
@@ -48,5 +54,11 @@ defmodule PonbotWeb.Line.WebhookController do
         {:ok, setting} = Configurations.create_setting(%{key: "line_access_token", value: resp["access_token"]})
         setting.value
     end
+  end
+
+  defp reply(event, message) do
+    reply_token = event["replyToken"]
+    access_token = get_access_token()
+    ExLineWrapper.reply(message, reply_token, access_token)
   end
 end
