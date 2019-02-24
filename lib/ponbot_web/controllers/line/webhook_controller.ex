@@ -3,7 +3,6 @@ defmodule PonbotWeb.Line.WebhookController do
 
   def index(conn, _params) do
     Enum.each(conn.params["events"], fn(event) ->
-      # Task.async(fn() -> handle_webhook(event, event["type"]) end)
       Ponbot.LineWebhookSupervisor.handle_webhook(event, event["type"])
     end)
 
