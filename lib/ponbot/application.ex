@@ -11,9 +11,11 @@ defmodule Ponbot.Application do
       # Start the Ecto repository
       Ponbot.Repo,
       # Start the endpoint when the application starts
-      PonbotWeb.Endpoint
+      PonbotWeb.Endpoint,
       # Starts a worker by calling: Ponbot.Worker.start_link(arg)
       # {Ponbot.Worker, arg},
+
+      {Task.Supervisor, name: Ponbot.LineWebhookSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
