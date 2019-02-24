@@ -18,8 +18,6 @@ defmodule PonbotWeb.Line.WebhookController do
   end
 
   def handle_webhook(event, event_type) when event_type == "message" do
-    reply_token = event["replyToken"]
-    access_token = get_access_token()
     case event["message"]["type"] do
       "text" ->
         text = event["message"]["text"]
