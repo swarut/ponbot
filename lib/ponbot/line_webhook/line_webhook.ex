@@ -2,8 +2,8 @@ defmodule Ponbot.LineWebhook do
 
   alias Ponbot.Configurations
 
-  @channel_id "1633821373"
-  @channel_secret "b037fbb16634379b18158655a60ac75f"
+  @channel_id Application.get_env(:ponbot, :line_channel_id)
+  @channel_secret Application.get_env(:ponbot, :line_channel_secret)
 
   def handle_webhook(event, event_type) when event_type == "message" do
     case event["message"]["type"] do

@@ -73,3 +73,6 @@ config :ponbot, Ponbot.Repo,
   database: System.get_env("DEV_DB"),
   hostname: "localhost",
   pool_size: 10
+
+config :ponbot, :line_channel_id, System.get_env("LINE_CHANNEL_ID")
+config :ponbot, :line_channel_secret, System.get_env("LINE_CHANNEL_SECRET")
