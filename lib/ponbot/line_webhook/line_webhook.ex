@@ -29,7 +29,7 @@ defmodule Ponbot.LineWebhook do
   end
 
   def handle_webhook(_event, event_type) when event_type == "unfollow" do
-    IO.puts "Bot got unfollowed T_T"
+    IO.puts "Bot got unfollowed"
   end
 
   defp reply(event, message) do
