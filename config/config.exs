@@ -30,3 +30,9 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :logger,
+  backends: [Timber.LoggerBackends.HTTP]
+
+  config :timber,
+  api_key: "11276_8a8c83d00240298e:8df38f8583680d5d04d4f028c4460f9b6ee2abb8e5372769a3cd88372272d5f3"
