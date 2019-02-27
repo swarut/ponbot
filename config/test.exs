@@ -16,3 +16,6 @@ config :ponbot, Ponbot.Repo,
   database: System.get_env("TEST_DB"),
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :ponbot, :line_channel_id, System.get_env("TEST_LINE_CHANNEL_ID")
+config :ponbot, :line_channel_secret, System.get_env("TEST_LINE_CHANNEL_SECRET")
