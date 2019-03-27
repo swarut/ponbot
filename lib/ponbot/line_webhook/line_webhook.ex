@@ -10,7 +10,7 @@ defmodule Ponbot.LineWebhook do
       "text" ->
         text = event["message"]["text"]
         cond do
-          String.starts_with?(text, "expense:") -> reply(event, "Received: #{text}")
+          String.starts_with?(text, "expense:") -> Ponbot.LineMessageHandler.handle_expense(event, text) #reply(event, "Received: #{text}")
           String.starts_with?(text, "weather:") -> reply(event, "Fine weather day")
           true -> reply(event, "yoyo")
         end
@@ -32,7 +32,7 @@ defmodule Ponbot.LineWebhook do
     IO.puts "Bot got unfollowed"
   end
 
-  defp reply(event, message) do
+  def reply(event, message) do
     reply_token = event["replyToken"]
     access_token = get_access_token()
     ExLineWrapper.reply(message, reply_token, access_token)
