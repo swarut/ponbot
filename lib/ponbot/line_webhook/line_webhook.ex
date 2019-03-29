@@ -10,7 +10,7 @@ defmodule Ponbot.LineWebhook do
       "text" ->
         text = event["message"]["text"]
         cond do
-          String.starts_with?(text, "expense:") -> Ponbot.LineMessageHandler.handle_expense(event, text) #reply(event, "Received: #{text}")
+          String.starts_with?(text, "expense:") -> Ponbot.LineMessageHandler.handle_expense_message(event, text) #reply(event, "Received: #{text}")
           String.starts_with?(text, "weather:") -> reply(event, "Fine weather day")
           true -> reply(event, "yoyo")
         end
