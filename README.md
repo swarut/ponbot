@@ -1,20 +1,14 @@
 # Ponbot
 
-To start your Phoenix server:
-
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+## Setting up
+- Create .env file in the project route folder.
+- For dev setup, add the following content to .env file.
+```
+export DEV_DB_USERNAME=<your db username>
+export DEV_DB_PASSWORD=<your db password>
+export DEV_DB=<your db>
+export DEV_LINE_CHANNEL_ID=<your line channel id>
+export DEV_LINE_CHANNEL_SECRET=<your line channel secret>
+```
+- `source .env`
+- `mix phx.server`
