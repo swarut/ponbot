@@ -16,4 +16,12 @@
       </li>
     </ul>
   </div>
+  <div>
+    <h2>Chat</h2>
+    <ul>
+      <li>
+        <%= link "Chat", to: Routes.line_chat_path(@conn, :index) %>
+      </li>
+    </ul>
+  </div>
 </section>
