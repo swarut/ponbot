@@ -24,6 +24,7 @@ defmodule PonbotWeb.Router do
   scope "/line" do
     pipe_through :line_webhook
 
+    get "/chat", PonbotWeb.Line.ChatController, :index
     post "/webhook", PonbotWeb.Line.WebhookController, :index
   end
 
