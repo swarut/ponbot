@@ -1,3 +1,7 @@
 <div id='chat'>
 mount react comp here.
 </div>
+
+<div id='root'>
+root
+</div>
