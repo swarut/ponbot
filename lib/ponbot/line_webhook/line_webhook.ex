@@ -35,16 +35,30 @@ defmodule Ponbot.LineWebhook do
   def reply(event, message) do
     reply_token = event["replyToken"]
     access_token = get_access_token()
-    ExLineWrapper.reply(message, reply_token, access_token)
+    case ExLineWrapper.reply(message, reply_token, access_token) do
+      {:ok} -> IO.puts "Message replied."
+      {:error, "401"} ->
+        IO.puts "ERROR : 401, unauthorized, will renew the token."
+        renew_access_token()
+        reply(event, message)
+    end
   end
 
   defp get_access_token do
     case Configurations.get_setting_by_key("line_access_token") do
-      %Configurations.Setting{key: "line_access_token", value: value} -> value
+      %Configurations.Setting{key: "line_access_token", value: value} ->
+        value
       nil ->
         {:ok, resp} = ExLineWrapper.authenticate(@channel_id, @channel_secret)
         {:ok, setting} = Configurations.create_setting(%{key: "line_access_token", value: resp["access_token"]})
         setting.value
     end
+  end
+
+  defp renew_access_token do
+    setting = Configurations.get_setting_by_key("line_access_token")
+    {:ok, resp} = ExLineWrapper.authenticate(@channel_id, @channel_secret)
+    {:ok, setting} = Configurations.update_setting(setting, %{key: "line_acess_token", value: resp["access_token"]})
+    setting.value
   end
 end
