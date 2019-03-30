@@ -45,7 +45,7 @@ defmodule Ponbot.MixProject do
       {:distillery, "~> 2.0"},
       {:httpoison, "~> 1.4"},
       {:jason, "~> 1.1"},
-      {:ex_line_wrapper, "~> 0.1"},
+      {:ex_line_wrapper, "~> 0.1.4"},
       {:timber, "~> 3.1"}
     ]
   end
