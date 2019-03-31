@@ -45,3 +45,5 @@ npm-debug.log
 .env
 /volumes
 /volumes/*
+/asset/node_modules
+/.vscode/*
