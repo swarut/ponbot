@@ -3,6 +3,7 @@ defmodule PonbotWeb.UserSocket do
 
   ## Channels
   # channel "room:*", PonbotWeb.RoomChannel
+  channel "line:*", PonbotWeb.LineChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
