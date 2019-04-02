@@ -2,7 +2,7 @@
 
 import "phoenix_html"
 
-import socket from "./socket"
+import socket from "./chat_socket"
 
 import React from 'react';
 import ReactDOM from 'react-dom';
