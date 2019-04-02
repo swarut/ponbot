@@ -8,7 +8,10 @@ let store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-class Chat extends Component {
+class ChatApp extends Component {
+  constructor(props) {
+    super();
+  }
   render() {
     return (
       <Provider store={store}>
@@ -20,4 +23,4 @@ class Chat extends Component {
   }
 }
 
-export default Chat;
+export default ChatApp;

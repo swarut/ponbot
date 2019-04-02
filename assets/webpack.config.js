@@ -14,7 +14,7 @@ module.exports = (env, options) => ({
   },
   entry: {
       app: ['./js/app.js'].concat(glob.sync('./vendor/**/*.js')),
-      chat: ['./js/chat.js'].concat(glob.sync('./vendor/**/*.js')),
+      chat_app: ['./js/chat_app.js'].concat(glob.sync('./vendor/**/*.js')),
   },
   output: {
     filename: '[name].js',
@@ -36,7 +36,7 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+    new MiniCssExtractPlugin({ filename: '../css/[name].css' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
   ]
 });

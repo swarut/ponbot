@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ponbot · Chat</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/chat.css") %>"/>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/chat_app.css") %>"/>
   </head>
   <body>
     <header>
@@ -17,6 +17,6 @@
       <%= render @view_module, @view_template, assigns %>
       <% #@env %>
     </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/chat.js") %>"></script>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/chat_app.js") %>"></script>
   </body>
 </html>
