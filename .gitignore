@@ -47,3 +47,5 @@ npm-debug.log
 /volumes/*
 /asset/node_modules
 /.vscode/*
+.DS_Store
+*/.DS_Store
