@@ -7,24 +7,24 @@ const defaultState = {
   joined: false
 }
 
+import socket from '../chat_socket';
+
 const reducer = (state = defaultState, action) => {
-  let arr, min, max, med;
   switch(action.type) {
     case JOIN_CHAT:
       let channel = socket.channel("line:lobby", {})
-      let joined;
+
       channel.join()
         .receive("ok", resp => {
-          console.log("Joined successfully", resp);
-          joined = true;
+          return Object.assign({}, state, {
+            joined: true
+          });
         })
         .receive("error", resp => {
-          console.log("Unable to join", resp);
-          joined = false;
-        })
-      return Object.assign({}, state, {
-        joined: joined
-      });
+          return Object.assign({}, state, {
+            joined: false
+          });
+        });
 
     default:
       return state

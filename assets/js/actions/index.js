@@ -1,5 +1,5 @@
 export const JOIN_CHAT = 'JOIN_CHAT'
-export const join_chat = () => {
+export const joinChat = () => {
   return {
     type: JOIN_CHAT
   }
