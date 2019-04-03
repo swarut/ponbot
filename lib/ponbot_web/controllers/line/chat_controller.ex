@@ -6,4 +6,11 @@ defmodule PonbotWeb.Line.ChatController do
     conn |> render("index.html")
   end
 
+  def ping(conn, _params) do
+    PonbotWeb.Endpoint.broadcast("line", "shout", "Shout from controller's ping")
+
+    IO.puts "Trying to ping the channel"
+    conn |> render("index.html")
+  end
+
 end

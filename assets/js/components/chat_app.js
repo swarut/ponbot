@@ -3,6 +3,8 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from '../reducers/index'
 
+import ChatUi from './chat_ui'
+
 let store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -17,7 +19,7 @@ class ChatApp extends Component {
     return (
       <Provider store={store}>
         <div className="chat">
-          this is a chat
+          <ChatUi />
         </div>
       </Provider>
     );
