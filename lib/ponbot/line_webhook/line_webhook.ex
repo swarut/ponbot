@@ -6,6 +6,7 @@ defmodule Ponbot.LineWebhook do
   @channel_secret Application.get_env(:ponbot, :line_channel_secret)
 
   def handle_webhook(event, event_type) when event_type == "message" do
+    # PonbotWeb.Endpoint.broadcast("line:lobby", "receive_message", %{text: "yoman"})
     case event["message"]["type"] do
       "text" ->
         text = event["message"]["text"]

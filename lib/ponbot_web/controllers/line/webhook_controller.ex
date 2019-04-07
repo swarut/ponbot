@@ -5,7 +5,6 @@ defmodule PonbotWeb.Line.WebhookController do
     Enum.each(conn.params["events"], fn(event) ->
       Ponbot.LineWebhookSupervisor.handle_webhook(event, event["type"])
     end)
-
     conn |> put_status(200) |> render("index.html")
   end
 

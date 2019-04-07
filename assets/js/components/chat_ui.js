@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { joinChatAsync } from '../actions/index';
+import { joinChatAsync, sendMessageAsync } from '../actions/index';
 
 class ChatUi extends Component {
   componentDidMount() {
@@ -20,6 +20,10 @@ class ChatUi extends Component {
     return (
       <div className='chat-ui'>
         this is a chat ui. {text}
+        <div>
+
+        </div>
+        <button onClick={this.props.sendMessageOnClick} >Send message</button>
       </div>
     );
   }
@@ -35,6 +39,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onMount: () => {
       dispatch(joinChatAsync())
+    },
+    sendMessageOnClick: () => {
+      dispatch(sendMessageAsync())
     }
   }
 }
