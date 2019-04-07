@@ -4,15 +4,19 @@ import {
 
 const defaultState = {
   name: 'taiko',
-  joined: false
+  joined: false,
+  conversations: {}
 }
-
-
 
 const reducer = (state = defaultState, action) => {
   switch(action.type) {
     case JOIN_CHAT:
-      return Object.assign({}, state, {joined: true});
+      if (action.status === 'success') {
+        return Object.assign({}, state, {joined: true});
+      }
+      else {
+        return Object.assign({}, state, {joined: false});
+      }
 
     default:
       return state

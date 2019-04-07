@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { joinChat } from '../actions/index';
+import { joinChatAsync } from '../actions/index';
 
 class ChatUi extends Component {
   componentDidMount() {
@@ -34,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onMount: () => {
-      dispatch(joinChat())
+      dispatch(joinChatAsync())
     }
   }
 }
