@@ -7,7 +7,6 @@ defmodule PonbotWeb.Line.ChatController do
   end
 
   def ping(conn, _params) do
-    IO.puts "Trying to ping the channel"
     conn |> render("index.html")
   end
 

@@ -8,6 +8,20 @@ class ChatUi extends Component {
     this.props.onMount();
   }
 
+  renderMessagesForUser(user, messages) {
+    let messageDivs = messages.map((m, index) => {
+      return <div className='message' key={index}>
+        {m}
+      </div>
+    })
+    return (
+      <div className='user' key={user}>
+        <h3>{user}</h3>
+        {messageDivs}
+      </div>
+    );
+  }
+
   render() {
     let text;
     if (this.props.joined) {
@@ -21,7 +35,9 @@ class ChatUi extends Component {
       <div className='chat-ui'>
         this is a chat ui. {text}
         <div>
-
+          {Object.keys(this.props.messages).map((user) => {
+            return this.renderMessagesForUser(user, this.props.messages[user]);
+          })}
         </div>
         <button onClick={this.props.sendMessageOnClick} >Send message</button>
       </div>
@@ -31,7 +47,8 @@ class ChatUi extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    joined: state.joined
+    joined: state.joined,
+    messages: state.conversations
   }
 }
 

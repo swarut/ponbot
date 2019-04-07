@@ -6,10 +6,10 @@ defmodule Ponbot.LineWebhook do
   @channel_secret Application.get_env(:ponbot, :line_channel_secret)
 
   def handle_webhook(event, event_type) when event_type == "message" do
-    # PonbotWeb.Endpoint.broadcast("line:lobby", "receive_message", %{text: "yoman"})
     case event["message"]["type"] do
       "text" ->
         text = event["message"]["text"]
+        PonbotWeb.Endpoint.broadcast("line:lobby", "receive_message", %{message: text, from_user: event["source"]["userId"]})
         cond do
           String.starts_with?(text, "expense:") -> Ponbot.LineMessageHandler.handle_expense_message(event, text) #reply(event, "Received: #{text}")
           String.starts_with?(text, "weather:") -> reply(event, "Fine weather day")
