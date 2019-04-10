@@ -5,13 +5,7 @@ defmodule Ponbot.LineWebhook do
   @channel_id Application.get_env(:ponbot, :line_channel_id)
   @channel_secret Application.get_env(:ponbot, :line_channel_secret)
 
-  def shout(message, num) do
-    IO.puts "#{message}: #{num}"
-    Process.sleep(300)
-  end
-
   def handle_webhook(event, event_type) when event_type == "message" do
-    Enum.map(1..2, fn(num) -> shout(event["message"]["text"], num) end)
     case event["message"]["type"] do
       "text" ->
         text = event["message"]["text"]
