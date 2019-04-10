@@ -11,8 +11,7 @@ defmodule Ponbot.LineWebhook do
   end
 
   def handle_webhook(event, event_type) when event_type == "message" do
-    # Process.sleep(5000)
-    Enum.map(1..100, fn(num) -> shout(event["message"]["text"], num) end)
+    Enum.map(1..2, fn(num) -> shout(event["message"]["text"], num) end)
     case event["message"]["type"] do
       "text" ->
         text = event["message"]["text"]
