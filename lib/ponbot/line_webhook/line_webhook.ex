@@ -8,14 +8,7 @@ defmodule Ponbot.LineWebhook do
   def handle_webhook(event, event_type) when event_type == "message" do
     case event["message"]["type"] do
       "text" ->
-        text = event["message"]["text"]
-        PonbotWeb.Endpoint.broadcast("line:lobby", "receive_message", %{message: text, from_user: event["source"]["userId"]})
-        cond do
-          String.starts_with?(text, "expense:") -> Ponbot.LineMessageHandler.handle_expense_message(event, text) #reply(event, "Received: #{text}")
-          String.starts_with?(text, "weather:") -> reply(event, "Fine weather day")
-          true -> reply(event, "yoyo")
-        end
-
+        Ponbot.LineMessageHandler.handle_message(event)
       "sticker" ->
         IO.puts "------------ignore sticker---------------------"
     end
