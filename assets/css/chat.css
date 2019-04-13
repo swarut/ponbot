@@ -1,3 +1,12 @@
 .chat {
   background-color: antiquewhite;
 }
+
+.message-wrapper-enter {
+  opacity: 0;
+}
+
+.message-wrapper-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
