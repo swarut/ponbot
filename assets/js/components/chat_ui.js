@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { joinChatAsync, sendMessageAsync } from '../actions/index';
+
+import ChatUserMessage from './chat_user_message';
 
 class ChatUi extends Component {
   componentDidMount() {
     this.props.onMount();
   }
 
-  renderMessagesForUser(user, messages) {
-    let messageDivs = messages.map((m, index) => {
-      return <div className='message' key={index}>
-        {m}
-      </div>
-    })
-    return (
-      <div className='user' key={user}>
-        <h3>{user}</h3>
-        {messageDivs}
-      </div>
-    );
-  }
+
 
   render() {
     let text;
@@ -36,7 +25,7 @@ class ChatUi extends Component {
         this is a chat ui. {text}
         <div>
           {Object.keys(this.props.messages).map((user) => {
-            return this.renderMessagesForUser(user, this.props.messages[user]);
+            return (<ChatUserMessage user={user} messages={this.props.messages[user]} key={user} />);
           })}
         </div>
         <button onClick={this.props.sendMessageOnClick} >Send message</button>
