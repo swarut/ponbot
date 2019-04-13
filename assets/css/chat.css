@@ -2,11 +2,15 @@
   background-color: antiquewhite;
 }
 
-.message-wrapper-enter {
+.message-wrapper.enter-active {
   opacity: 0;
+  height: 0;
 }
 
-.message-wrapper-enter-active {
+.message-wrapper.enter-done {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  height: auto;
+  transition: 1s;
+  /* transition: cubic-bezier(0.075, 0.82, 0.165, 1); */
+  /* transition: opacity 500ms ease-in; */
 }

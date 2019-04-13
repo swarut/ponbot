@@ -6,7 +6,7 @@ class ChatUserMessage extends Component{
   renderMessagesForUser(user, messages) {
     return messages.map((m, index) => {
       return (
-        <CSSTransition key={index} timeout={500} className='message-wrapper'>
+        <CSSTransition key={index} timeout={300} className='message-wrapper'>
           <div className='message' key={index}>
             {m}
           </div>
