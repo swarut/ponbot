@@ -43,7 +43,7 @@ defmodule Ponbot.MixProject do
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.0"},
       {:distillery, "~> 2.0"},
-      {:httpoison, "~> 1.4"},
+      {:httpoison, "~> 1.5"},
       {:jason, "~> 1.1"},
       {:ex_line_wrapper, "~> 0.1.4"},
       {:timber, "~> 3.1"}
