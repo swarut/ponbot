@@ -15,6 +15,6 @@ defmodule Ponbot.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :line_id, :last_login])
-    |> validate_required([:username, :line_id, :last_login])
+    |> validate_required([:username, :line_id])
   end
 end
