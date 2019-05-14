@@ -21,12 +21,12 @@ defmodule PonbotWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/line", as: :line do
+  scope "/line", PonbotWeb.Line, as: :line do
     pipe_through :line_webhook
 
-    get "/ping", PonbotWeb.Line.ChatController, :ping
-    get "/chat", PonbotWeb.Line.ChatController, :index
-    post "/webhook", PonbotWeb.Line.WebhookController, :index
+    get "/ping", ChatController, :ping
+    get "/chat", ChatController, :index
+    post "/webhook", WebhookController, :index
   end
 
   scope "/", PonbotWeb do
